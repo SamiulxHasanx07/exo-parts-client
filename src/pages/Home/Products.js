@@ -1,34 +1,24 @@
 import React from 'react';
 import Product from './Product';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const Products = () => {
-    const products = [
-        {
-            id: 1, name: 'Power Stop Caliper Covers', price: 35, available:500
-        },
-        {
-            id: 2, name: 'Power Stop Caliper Covers', price: 35, available:500
-        },
-        {
-            id: 3, name: 'Power Stop Caliper Covers', price: 35, available:500
-        },
-        {
-            id: 4, name: 'Power Stop Caliper Covers', price: 35, available:500
-        },
-        {
-            id: 5, name: 'Power Stop Caliper Covers', price: 35, available:500
-        },
-        {
-            id: 6, name: 'Power Stop Caliper Covers', price: 35, available:500
-        }
-    ]
+    const getProducts = () =>{
+        return axios.get('http://localhost:5000/products')
+    }
+
+    const {data:products, isLoading, refetch} =  useQuery('products', getProducts )
+
+    console.log();
+    
     return (
         <div className='py-28'>
             <div className='products-container container mx-auto'>
                 <h2 className='text-4xl font-bold mb-16'>Exo Parts</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-12 '>
                     {
-                        products.map(product => <Product key={product.id} product={product} />)
+                        products?.data.map(product => <Product key={product.id} product={product} />)
                     }
                 </div>
 
