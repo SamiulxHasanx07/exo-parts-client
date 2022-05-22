@@ -4,6 +4,10 @@ import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import Footer from './shared/Footer';
 import Navbar from './shared/Navbar';
+import Login from './shared/Auth/Login';
+import Register from './shared/Auth/Register';
+import Resetpass from './shared/Auth/Resetpass';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -33,10 +37,14 @@ function App() {
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='home' element={<Home></Home>}></Route>
+            <Route path='login' element={<Login/>}></Route>
+            <Route path='register' element={<Register/>}></Route>
+            <Route path='resetpass' element={<Resetpass/>}></Route>
             <Route path='*' element={<NotFound></NotFound>}></Route>
           </Routes>
           <Footer />
 
+          <ToastContainer/>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
