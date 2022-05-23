@@ -24,6 +24,16 @@ const Register = () => {
         }
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password)
+        // const userData = { name, email, role: 'customer', photo: '' }
+        // fetch('http://localhost:5000/users', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(userData)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
         await updateProfile({ displayName: name })
 
 
@@ -38,7 +48,6 @@ const Register = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if (user) {
-            console.log(user);
             navigate('/home')
         }
     }, [user, navigate])
@@ -102,7 +111,7 @@ const Register = () => {
                         <input className='btn btn-primary mt-8 w-full' type="submit" value="Register" />
                     </div>
                 </form>
-                <SocialLogin/>
+                <SocialLogin />
             </div>
         </div>
     );

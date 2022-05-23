@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../fireabse.init';
 // import useGetData from '../hooks/useGetData';
 
 const Purchase = () => {
-    const [user] =  useAuthState(auth)
+    const [user] = useAuthState(auth)
     const [disabled, setDisabled] = useState(false)
     const [inputValue, setInputValue] = useState('')
     const [inputValueError, setInputValueError] = useState('')
@@ -23,7 +24,7 @@ const Purchase = () => {
 
 
     console.log(user);
-    
+
 
     if (isLoading) {
         return <p>Loading...</p>
@@ -52,13 +53,49 @@ const Purchase = () => {
 
     const placeOrder = (e) => {
         e.preventDefault();
+        const email = user?.email;
+        const address = e.target.shipping.value;
+        const phone = e.target.phone.value;
+        const qty = e.target.qty.value;
+        console.log(email, address, phone, qty);
+        if (data?.data.available >= data?.data.minOrder) {
+            const date = new Date();
+            const today = date.getFullYear() + '-' + (date.getMonth()) + '-' + (date.getDate());
 
+            const price = qty * data?.data.price;
+
+            fetch('http://localhost:5000/orders', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        e.target.reset();
+                        toast.success('Thanks for order, please proced to payment')
+                    }
+                })
+
+            const updateAvailable = data?.data.available - qty;
+
+            fetch(`http://localhost:5000/product/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ available: updateAvailable })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    refetch()
+                })
+        } else {
+            toast.error('stock out')
+        }
     }
-
-    // // const stockValidate = parseInt(data?.data.available) > parseInt(data?.data.minOrder);
-    // if (stockValidate) {
-    //     setDisabled(true)
-    // }
 
 
     return (
@@ -96,18 +133,17 @@ const Purchase = () => {
                     </div>
                     <div className="">
                         <form onSubmit={placeOrder}>
-                    
-                        <input onChange={userInput} type="number" defaultValue={data?.data.minOrder} placeholder="Enter Quantity" className="input input-bordered w-full  mt-10" />
-                        {
-                            inputValueError ? <label className='text-red-700 block'>Please Enter Valid Number</label> : ''
-                        }
-                        {disabled && <label className='text-red-700'>Minimum Qty: {data?.data.minOrder}  {data?.data.available > data?.data.minOrder ? `& Maximum Qty: ${data?.data.available}` : ''}</label>}
+                            <input name='qty' onChange={userInput} type="number" defaultValue={data?.data.minOrder} placeholder="Enter Quantity" className="input input-bordered w-full  mt-10" />
+                            {
+                                inputValueError ? <label className='text-red-700 block'>Please Enter Valid Number</label> : ''
+                            }
+                            {disabled && <label className='text-red-700'>Minimum Qty: {data?.data.minOrder}  {data?.data.available > data?.data.minOrder ? `& Maximum Qty: ${data?.data.available}` : ''}</label>}
+                            <input required type="text" name='phone' placeholder='Phone Number' className="input input-bordered w-full  mt-10" />
+                            <input disabled type="text" className="input input-bordered w-full  mt-10" value={user && user.email} />
+                            <textarea required name='shipping' type="text" className="input input-bordered w-full mt-10" placeholder='Enter Your Shipping Address' />
 
-                        <input disabled  type="text" className="input input-bordered w-full  mt-10" value={user&&user.email} />
-                        <textarea type="text" className="input input-bordered w-full mt-10" placeholder='Enter Your Shipping Address' />
+                            <input type='submit' disabled={disabled} className="mt-5 btn btn-primary w-full text-white" value='PlaceOrder' />
 
-                        <input type='submit' disabled={disabled} className="mt-5 btn btn-primary w-full text-white" value='PlaceOrder'/>
-                        
                         </form>
 
                     </div>

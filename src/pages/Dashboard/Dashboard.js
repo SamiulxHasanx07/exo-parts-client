@@ -1,14 +1,15 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import CustomLink from '../../shared/CustomLink';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signOut } from 'firebase/auth';
+import auth from '../../fireabse.init';
 
 const Dashboard = () => {
+    
     return (
         <>
-
-
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
@@ -27,6 +28,7 @@ const Dashboard = () => {
                         <li><CustomLink to='/dashboard/orders'>Orders</CustomLink></li>
                         <li><CustomLink to='/dashboard/addreview'>Add a Review</CustomLink></li>
                         <li><CustomLink to='/dashboard/updateprofile'>Update Profile</CustomLink></li>
+                        <li><button onClick={()=>signOut(auth)} className='btn btn-ghost'><FontAwesomeIcon icon={faArrowRightFromBracket}/> Signout</button></li>
                     </ul>
 
                 </div>
