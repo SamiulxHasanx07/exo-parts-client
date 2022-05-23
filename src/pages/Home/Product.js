@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
     return (
@@ -14,7 +15,7 @@ const Product = ({ product }) => {
                     <p className='text-xl text-left'>Available: {product.available} pcs</p>
                     <p className=' text-left'>{product.description.slice(0,120)}...</p>
                     <div className="card-actions justify-center">
-                        <button className="btn btn-primary">Place Order</button>
+                        <Link to={`/purchase/${product._id}`} className="btn btn-primary">Place Order</Link>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../fireabse.init';
 import { toast } from 'react-toastify';
 const Register = () => {
-
     const [confirm, setConfirm] = useState('')
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [
@@ -24,8 +23,8 @@ const Register = () => {
         }
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password)
-        await updateProfile({displayName:name})
-        
+        await updateProfile({ displayName: name })
+
 
     };
 
