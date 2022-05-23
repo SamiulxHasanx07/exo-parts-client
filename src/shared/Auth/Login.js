@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../fireabse.init';
+import SocialLogin from './SocialLogin';
 
 const Login = () => {
 
@@ -83,7 +84,9 @@ const Login = () => {
                         <input className='btn btn-primary mt-8 w-full' type="submit" value="Login" />
                     </div>
                 </form>
+                <SocialLogin />
             </div>
+
         </div>
     );
 };

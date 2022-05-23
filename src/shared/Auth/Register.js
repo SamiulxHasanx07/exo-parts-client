@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../fireabse.init';
 import { toast } from 'react-toastify';
+import SocialLogin from './SocialLogin';
 const Register = () => {
     const [confirm, setConfirm] = useState('')
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
@@ -98,9 +99,10 @@ const Register = () => {
                         <span>Already Have an Account <Link to='/login' className='btn btn-sm btn-success mt-8'>Login</Link></span>
                     </div>
                     <div>
-                        <input className='btn btn-primary mt-8' type="submit" value="Register" />
+                        <input className='btn btn-primary mt-8 w-full' type="submit" value="Register" />
                     </div>
                 </form>
+                <SocialLogin/>
             </div>
         </div>
     );
