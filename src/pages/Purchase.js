@@ -69,7 +69,7 @@ const Purchase = () => {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify({ name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today })
+                body: JSON.stringify({ product:data?.data.name, name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today })
             })
                 .then(res => res.json())
                 .then(data => {

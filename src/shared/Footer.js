@@ -29,7 +29,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-secondary">
-                <p className='text-white py-5'>All right reserved &copy; by Exo Parts 2022</p>
+                <p className='text-white py-5 text-center'>All right reserved &copy; by Exo Parts 2022</p>
             </div>
         </footer>
     );
