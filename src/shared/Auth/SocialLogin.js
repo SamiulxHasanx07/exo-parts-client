@@ -3,7 +3,8 @@ import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../fireabse.init';
-
+import { faGoogle, faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
@@ -50,10 +51,9 @@ const SocialLogin = () => {
             <div className="flex flex-col w-full border-opacity-50">
                 <div className="divider">OR</div>
 
-
-                <button onClick={() => signInWithGoogle()} className="mt-3 btn bg-red-700 text-white">Google {pathValidation?'Login':'Signup'}</button>
-                <button onClick={() => signInWithgithub()} className="mt-3 btn bg-green-800 text-white">Github {pathValidation?'Login':'Signup'}</button>
-                <button onClick={() => signInWithFacebook()} className="mt-3 btn bg-blue-800 text-white">Facebook {pathValidation?'Login':'Signup'}</button>
+                <button onClick={() => signInWithGoogle()} className="mt-3 btn bg-red-700 text-white"><FontAwesomeIcon icon={faGoogle}/> <span className='ml-3'>Google {pathValidation?'Login':'Signup'}</span></button>
+                <button onClick={() => signInWithgithub()} className="mt-3 btn bg-green-800 text-white"><FontAwesomeIcon icon={faGithub}/> <span className='ml-3'>Github {pathValidation?'Login':'Signup'}</span></button>
+                <button onClick={() => signInWithFacebook()} className="mt-3 btn bg-blue-800 text-white"><FontAwesomeIcon icon={faFacebook}/> <span className='ml-3'>Facebook {pathValidation?'Login':'Signup'}</span></button>
             </div>
 
         </div>

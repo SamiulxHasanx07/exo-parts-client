@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation, Outlet } from "react-router-dom";
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import Footer from './shared/Footer';
@@ -10,14 +10,21 @@ import Resetpass from './shared/Auth/Resetpass';
 import { ToastContainer } from 'react-toastify';
 import Purchase from './pages/Purchase';
 import RequireAuth from './shared/Auth/RequireAuth';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Orders from './pages/Dashboard/Orders';
+import AddReview from './pages/Dashboard/AddReview';
+import UpdateProfile from './pages/Dashboard/UpdateProfile';
 
 function App() {
+  const location = useLocation();
+  const pathValidate = location.pathname.includes('/dashboard');
+
   return (
     <div className="App">
       <div className="drawer drawer-end">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
-          <div className="w-full navbar bg-primary lg:px-48">
+          <div className={`w-full navbar bg-primary lg:px-48 ${pathValidate ? 'hidden' : ''}`}>
 
             <div className="flex-1 px-2 mx-2">
               <Link to='/'><h2 className='text-3xl font-bold text-white'>Exo Parts</h2></Link>
@@ -44,12 +51,23 @@ function App() {
                 <Purchase />
               </RequireAuth>
             } />
+
+
+            <Route path='/dashboard' element={<Dashboard />}>
+              <Route path='orders' element={<Orders></Orders>}></Route>
+              <Route path='addreview' element={<AddReview></AddReview>}></Route>
+              <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>
+            </Route>
+
             <Route path='login' element={<Login />}></Route>
             <Route path='register' element={<Register />}></Route>
             <Route path='resetpass' element={<Resetpass />}></Route>
             <Route path='*' element={<NotFound></NotFound>}></Route>
           </Routes>
-          <Footer />
+
+          {
+            pathValidate ? '' : <Footer />
+          }
 
           <ToastContainer />
         </div>
@@ -60,22 +78,6 @@ function App() {
           </ul>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   );
 }

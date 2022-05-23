@@ -16,6 +16,9 @@ const Navbar = () => {
                 <p className={`${user?'':'hidden'}`}>{user?.displayName}</p>
                 {user ?'':  <CustomLink to='/login'>Login</CustomLink>}
                 {user ?'':  <CustomLink to='/register'>Register</CustomLink>}
+                {
+                    user?<CustomLink to='/dashboard'>Dashboard</CustomLink>:''
+                }
                 {user && <button className='btn btn-secondary text-white' onClick={() => signOut(auth)}>Sign Out <FontAwesomeIcon icon={faArrowRightFromBracket} /></button>}
             </li>
 
