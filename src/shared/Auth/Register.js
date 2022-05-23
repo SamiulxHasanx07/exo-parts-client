@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../fireabse.init';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 const Register = () => {
 
     const [confirm, setConfirm] = useState('')
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -14,15 +15,17 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         const confirmError = data.password === data.confirm;
         if (!confirmError) {
             setConfirm('Not Match')
         } else {
             setConfirm('')
         }
-        const { email, password } = data;
-        createUserWithEmailAndPassword(email, password)
+        const { name, email, password } = data;
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({displayName:name})
+        
 
     };
 
@@ -32,9 +35,10 @@ const Register = () => {
         }
     }, [error])
 
-    const navigate =  useNavigate()
+    const navigate = useNavigate()
     useEffect(() => {
         if (user) {
+            console.log(user);
             navigate('/home')
         }
     }, [user, navigate])

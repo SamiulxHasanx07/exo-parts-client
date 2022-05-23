@@ -8,6 +8,7 @@ import Login from './shared/Auth/Login';
 import Register from './shared/Auth/Register';
 import Resetpass from './shared/Auth/Resetpass';
 import { ToastContainer } from 'react-toastify';
+import Purchase from './pages/Purchase';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='home' element={<Home></Home>}></Route>
+            <Route path='purchase/:id' element={<Purchase/>}/>
             <Route path='login' element={<Login/>}></Route>
             <Route path='register' element={<Register/>}></Route>
             <Route path='resetpass' element={<Resetpass/>}></Route>
