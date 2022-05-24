@@ -4,20 +4,21 @@ import auth from '../../fireabse.init';
 
 const AddReview = () => {
     const [user] = useAuthState(auth)
+
     const reviewSubmit = (e) => {
         e.preventDefault();
         const name = user?.displayName;
         const email = user?.email;
         const review = e.target.review.value;
         const rating = e.target.rating.value;
-
+        const img =  user?.photoURL;
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ name, email, review, rating })
+            body: JSON.stringify({ name, img, email, review, rating })
         })
             .then(res => res.json())
             .then(data => console.log(data))
