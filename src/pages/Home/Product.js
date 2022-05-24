@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Product = ({ product }) => {
     return (
         <div>
-            <div className="card w-96 bg-base-100 border-2 mx-auto">
-                <figure><img src={`${product.image}`} alt="Shoes" /></figure>
+            <div className="card w-full bg-base-100 border-2 mx-auto">
+                <figure><img src={`${product.image}`} alt={product.name} /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{product?.name}</h2>
                     <div className='flex justify-between'>
