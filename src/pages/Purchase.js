@@ -57,8 +57,9 @@ const Purchase = () => {
         const address = e.target.shipping.value;
         const phone = e.target.phone.value;
         const qty = e.target.qty.value;
-        console.log(email, address, phone, qty);
-        if (data?.data.available >= data?.data.minOrder) {
+        console.log(data?.data.available >= data?.data.minOrder);
+        
+        if (parseInt(data?.data.available) >= data?.data.minOrder) {
             const date = new Date();
             const today = date.getFullYear() + '-' + (date.getMonth()) + '-' + (date.getDate());
 

@@ -5,8 +5,13 @@ import { faHome, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'firebase/auth';
 import auth from '../../fireabse.init';
+import useAdmin from '../../hooks/useAdmin';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
+
 
     return (
         <>
@@ -22,10 +27,27 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-80  text-base-content bg-primary">
                         {/* <!-- Sidebar content here --> */}
-                        <li><CustomLink to='/home'><FontAwesomeIcon icon={faHome} /> Goto Home</CustomLink></li>
-                        <li><CustomLink to='/dashboard/orders'>My Orders</CustomLink></li>
-                        <li><CustomLink to='/dashboard/addreview'>Add a Review</CustomLink></li>
-                        <li><CustomLink to='/dashboard/myprofile'>My Profile</CustomLink></li>
+                        {
+                            admin !== 'admin' && <>
+                                <li><CustomLink to='/home'><FontAwesomeIcon icon={faHome} /> Goto Home</CustomLink></li>
+                                <li><CustomLink to='/dashboard/orders'>My Orders</CustomLink></li>
+                                <li><CustomLink to='/dashboard/addreview'>Add a Review</CustomLink></li>
+                                <li><CustomLink to='/dashboard/myprofile'>My Profile</CustomLink></li>
+                            </>
+                        }
+
+                        {
+                            admin === 'admin' && <>
+                                <li><CustomLink to='/home'><FontAwesomeIcon icon={faHome} /> Goto Home</CustomLink></li>
+                                <li><CustomLink to='/dashboard/addproduct'>Add A Product</CustomLink></li>
+                                <li><CustomLink to='/dashboard/makeadmin'>Make A Admin</CustomLink></li>
+                                <li><CustomLink to='/dashboard/manageorders'>Manage Orders</CustomLink></li>
+                                <li><CustomLink to='/dashboard/manageproducts'>Manage Products</CustomLink></li>
+                                <li><CustomLink to='/dashboard/myprofile'>My Profile</CustomLink></li>
+                            </>
+                        }
+
+
                         <li><button onClick={() => signOut(auth)} className='btn btn-ghost'><FontAwesomeIcon icon={faArrowRightFromBracket} /> Signout</button></li>
                     </ul>
 

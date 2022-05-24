@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
+    console.log(product);
+    
     return (
         <div>
             <div className="card w-full bg-base-100 border-2 mx-auto">
@@ -13,7 +15,7 @@ const Product = ({ product }) => {
                         <h4 className='text-xl'>Min Order: {product.minOrder} pcs</h4>
                     </div>
                     <p className='text-xl text-left'>Available: {product.available} pcs</p>
-                    <p className=' text-left'>{product.description.slice(0,120)}...</p>
+                    <p className=' text-left'>{product?.description.slice(0,120)} {product?.description.length>120?<span>...</span>:''}</p>
                     <div className="card-actions justify-center">
                         <Link to={`/purchase/${product._id}`} className="btn btn-primary">Place Order</Link>
                     </div>

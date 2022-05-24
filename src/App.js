@@ -15,6 +15,11 @@ import Orders from './pages/Dashboard/Orders';
 import AddReview from './pages/Dashboard/AddReview';
 import UpdateProfile from './pages/Dashboard/UpdateProfile';
 import MyProfile from './pages/Dashboard/MyProfile';
+import RequireAdmin from './shared/Auth/RequireAdmin';
+import AddProduct from './pages/Dashboard/AddProduct';
+import MakeAdmin from './pages/Dashboard/MakeAdmin';
+import ManageOrders from './pages/Dashboard/ManageOrders';
+import ManageProducts from './pages/Dashboard/ManageProducts';
 
 function App() {
   const location = useLocation();
@@ -63,6 +68,27 @@ function App() {
               <Route path='addreview' element={<AddReview></AddReview>}></Route>
               <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
               <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>
+
+              <Route path='addproduct' element={
+                <RequireAdmin>
+                  <AddProduct/>
+                </RequireAdmin>
+              }></Route>
+              <Route path='makeadmin' element={
+                <RequireAdmin>
+                  <MakeAdmin/>
+                </RequireAdmin>
+              }></Route>
+              <Route path='manageorders' element={
+                <RequireAdmin>
+                  <ManageOrders/>
+                </RequireAdmin>
+              }></Route>
+              <Route path='manageproducts' element={
+                <RequireAdmin>
+                  <ManageProducts/>
+                </RequireAdmin>
+              }></Route>
             </Route>
 
             <Route path='login' element={<Login />}></Route>
