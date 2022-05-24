@@ -25,7 +25,7 @@ const Dashboard = () => {
                         <li><CustomLink to='/home'><FontAwesomeIcon icon={faHome} /> Goto Home</CustomLink></li>
                         <li><CustomLink to='/dashboard/orders'>My Orders</CustomLink></li>
                         <li><CustomLink to='/dashboard/addreview'>Add a Review</CustomLink></li>
-                        <li><CustomLink to='/dashboard/updateprofile'>My Profile</CustomLink></li>
+                        <li><CustomLink to='/dashboard/myprofile'>My Profile</CustomLink></li>
                         <li><button onClick={() => signOut(auth)} className='btn btn-ghost'><FontAwesomeIcon icon={faArrowRightFromBracket} /> Signout</button></li>
                     </ul>
 

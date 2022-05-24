@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Orders from './pages/Dashboard/Orders';
 import AddReview from './pages/Dashboard/AddReview';
 import UpdateProfile from './pages/Dashboard/UpdateProfile';
+import MyProfile from './pages/Dashboard/MyProfile';
 
 function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ function App() {
             }>
               <Route path='orders' element={<Orders></Orders>}></Route>
               <Route path='addreview' element={<AddReview></AddReview>}></Route>
+              <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
               <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>
             </Route>
 

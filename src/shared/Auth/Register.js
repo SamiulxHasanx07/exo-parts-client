@@ -40,7 +40,7 @@ const Register = () => {
 
     const navigate = useNavigate()
     useEffect(() => {
-        if (user?.email) {
+        if (user) {
             fetch('http://localhost:5000/users', {
                 method: 'POST',
                 headers: {
@@ -50,8 +50,6 @@ const Register = () => {
             })
                 .then(res => res.json())
                 .then(data => console.log(data))
-        }
-        if (user) {
             navigate('/home')
         }
     }, [user, navigate, userInfo])
