@@ -1,11 +1,14 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import auth from '../../fireabse.init';
 import Order from './Order';
 
 const Orders = () => {
+    const [user] = useAuthState(auth)
 
     const fetchData = () => {
-        return fetch('http://localhost:5000/orders').then(res => res.json())
+        return fetch(`http://localhost:5000/orders/${user?.email}`).then(res => res.json())
     }
 
     const { data: orders, isLoading, refetch } = useQuery('user-orders', fetchData)
@@ -36,7 +39,6 @@ const Orders = () => {
                     <tbody>
 
                         {
-
                             orders?.map(( order, index) => <Order key={order._id} singleOrder={order} index={index} refetch={refetch}/>)
                         }
                     </tbody>
