@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../fireabse.init';
 
 const AddReview = () => {
     const [user] = useAuthState(auth)
+    const [userInfo, setUserInfo] =  useState(auth)
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user?.email}`)
+            .then(response => response.json())
+            .then(data => setUserInfo(data));
+    }, [user?.email])
 
     const reviewSubmit = (e) => {
         e.preventDefault();
@@ -11,7 +18,7 @@ const AddReview = () => {
         const email = user?.email;
         const review = e.target.review.value;
         const rating = e.target.rating.value;
-        const img =  user?.photoURL;
+        const img = user?.photoURL||userInfo?.photo;
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
@@ -33,10 +40,10 @@ const AddReview = () => {
             <div className='w-[50%] mt-6'>
                 <form onSubmit={reviewSubmit}>
                     <label>Write Your Reivew</label> <br />
-                    <textarea required name='review' rows="5" class="w-full textarea textarea-bordered" placeholder="Writer Your Review Here"></textarea>
+                    <textarea required name='review' rows="5" className="w-full textarea textarea-bordered" placeholder="Writer Your Review Here"></textarea>
 
                     <div className='flex items-center'>
-                        <input required name='rating' min={1} max={5} type="number" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                        <input required name='rating' min={1} max={5} type="number" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
                         <h3 className='ml-4'>Out Of 5</h3>
                     </div>
                     <div className='mt-3'>

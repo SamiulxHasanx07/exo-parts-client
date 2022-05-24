@@ -27,7 +27,7 @@ const MyProfile = () => {
                         </div>
                         <div>
                             <div className='rounded-[100px] overflow-hidden'>
-                                <img src={photo?photo:user?.photoURL} alt="" />
+                                <img className='w-[100px]' src={photo?photo:user?.photoURL} alt="" />
                             </div>
                         </div>
                     </div>

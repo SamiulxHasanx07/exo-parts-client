@@ -23,8 +23,8 @@ const Order = ({ singleOrder, index, refetch }) => {
                     .then(data => {
                         if (data.deletedCount === 1) {
                             Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
+                                'Canelled!',
+                                'Your Order has been cancelled.',
                                 'success'
                             )
                             refetch();

@@ -7,12 +7,12 @@ const Reviews = () => {
     const fetchData = () => {
         return fetch('http://localhost:5000/reviews').then(res => res.json())
     }
+    
     const { data: reviews, isLoading, refetch } = useQuery('reviews', fetchData)
 
     if (isLoading) {
         return <p>Loading ...</p>
     }
-    console.log(reviews);
 
     return (
         <div className='py-28 bg-yellow-50'>

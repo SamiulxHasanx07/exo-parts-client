@@ -6,11 +6,11 @@ import { faStar, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-i
 const Review = ({ singleReview }) => {
     const { name, img, review, rating } = singleReview;
     return (
-        <div class="card w-full bg-base-100 shadow-xl mx-auto">
-            <div class="card-body">
-                <div class="card-actions justify-between">
+        <div className="card w-full bg-base-100 shadow-xl mx-auto">
+            <div className="card-body">
+                <div className="card-actions justify-between">
                     <div>
-                        <h2 class="card-title">{name}</h2>
+                        <h2 className="card-title">{name}</h2>
 
                         <Rating
                             initialRating={rating}
@@ -20,8 +20,8 @@ const Review = ({ singleReview }) => {
                         >
                         </Rating>
                     </div>
-                    <div class="avatar">
-                        <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <div className="avatar">
+                        <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img src={img} alt='' />
                         </div>
                     </div>
