@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import SocialLogin from './SocialLogin';
 const Register = () => {
     const [confirm, setConfirm] = useState('')
+    const [userInfo, setUserInfo] = useState({})
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [
         createUserWithEmailAndPassword,
@@ -24,16 +25,8 @@ const Register = () => {
         }
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password)
-        // const userData = { name, email, role: 'customer', photo: '' }
-        // fetch('http://localhost:5000/users', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(userData)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => console.log(data))
+        const userData = { name, email, phone: '', education: '', address: '', github: '', role: 'customer', photo: '' }
+        setUserInfo(userData)
         await updateProfile({ displayName: name })
 
 
@@ -47,10 +40,21 @@ const Register = () => {
 
     const navigate = useNavigate()
     useEffect(() => {
+        if (user?.email) {
+            fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(userInfo)
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }
         if (user) {
             navigate('/home')
         }
-    }, [user, navigate])
+    }, [user, navigate, userInfo])
     return (
         <div>
 
