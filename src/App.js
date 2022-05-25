@@ -20,6 +20,7 @@ import AddProduct from './pages/Dashboard/AddProduct';
 import MakeAdmin from './pages/Dashboard/MakeAdmin';
 import ManageOrders from './pages/Dashboard/ManageOrders';
 import ManageProducts from './pages/Dashboard/ManageProducts';
+import EditProduct from './pages/Dashboard/EditProduct';
 
 function App() {
   const location = useLocation();
@@ -87,6 +88,11 @@ function App() {
               <Route path='manageproducts' element={
                 <RequireAdmin>
                   <ManageProducts/>
+                </RequireAdmin>
+              }></Route>
+              <Route path='editproducts/:id' element={
+                <RequireAdmin>
+                  <EditProduct/>
                 </RequireAdmin>
               }></Route>
             </Route>

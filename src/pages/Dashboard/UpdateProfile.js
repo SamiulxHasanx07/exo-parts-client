@@ -8,8 +8,6 @@ const UpdateProfile = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [userInfo, setUserInfo] = useState([])
-
-
     useEffect(() => {
         fetch(`http://localhost:5000/user/${user?.email}`)
             .then(response => response.json())

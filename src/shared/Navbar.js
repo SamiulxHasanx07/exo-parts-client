@@ -19,8 +19,6 @@ const Navbar = () => {
                 {
                     user?<CustomLink to='/dashboard'>Dashboard</CustomLink>:''
                 }
-                
-
 
 
                 {user && <button className='btn btn-secondary text-white' onClick={() => signOut(auth)}>Sign Out <FontAwesomeIcon icon={faArrowRightFromBracket} /></button>}

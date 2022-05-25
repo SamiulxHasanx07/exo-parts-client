@@ -23,7 +23,7 @@ const MakeAdmin = () => {
                 showCancelButton: true,
                 confirmButtonColor: '#36d399',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Remove Admin!'
+                confirmButtonText: 'Yes, Assign Admin!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     const url = `http://localhost:5000/make-admin/${email}`

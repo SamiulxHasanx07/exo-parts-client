@@ -10,23 +10,28 @@ const ManageProducts = () => {
 
     const { data: products, isLoading, refetch } = useQuery('admin-product', getProducts)
 
+    if(isLoading){
+        return <p>Loading...</p>
+    }
     return (
         <div>
-            <div className="overflow-x-auto mt-8">
+            <h2 className='text-3xl font-bold'>Manage All Products</h2>
+            <div className="mt-8">
                 <table className="table table-compact w-full">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Product</th>
-                            <th>Email</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Min Order</th>
+                            <th>Available</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            products.data.map((product, index)=><ManageProduct key={product._id} product={product} index={index}/>)
+                            products?.data?.map((product, index)=><ManageProduct key={product._id} product={product} index={index} refetch={refetch}/>)
                         }
                     </tbody>
                 </table>
