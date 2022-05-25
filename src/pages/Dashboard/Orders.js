@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import auth from '../../fireabse.init';
 import Order from './Order';
 
 const Orders = () => {
+    const [orders, setOrders] = useState([]);
     const [user] = useAuthState(auth)
     const navigate = useNavigate();
     const fetchData = () => {
@@ -20,7 +21,12 @@ const Orders = () => {
         })
     }
 
-    const { data: orders, isLoading, refetch } = useQuery('user-orders', fetchData)
+    const { data, isLoading, refetch } = useQuery('user-orders', fetchData)
+
+    useEffect(()=>{
+
+        setOrders(data);
+    },[data])
 
     if (isLoading) {
         return <p>Loading....</p>

@@ -8,7 +8,11 @@ const AddReview = () => {
     const [userInfo, setUserInfo] = useState(auth)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`http://localhost:5000/user/${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(response => response.json())
             .then(data => setUserInfo(data));
     }, [user?.email])
@@ -31,7 +35,7 @@ const AddReview = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     toast.success('review added successfully')
                 }
             })
