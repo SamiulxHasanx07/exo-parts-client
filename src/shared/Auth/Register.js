@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../fireabse.init';
 import { toast } from 'react-toastify';
 import SocialLogin from './SocialLogin';
+import useJWT from '../../hooks/useJWT';
 const Register = () => {
     const [confirm, setConfirm] = useState('')
     const [userInfo, setUserInfo] = useState({})
@@ -15,7 +16,10 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const accessToken = useJWT()
     const onSubmit = async (data) => {
         const confirmError = data.password === data.confirm;
         if (!confirmError) {
@@ -25,6 +29,7 @@ const Register = () => {
         }
         const { name, email, password } = data;
         await createUserWithEmailAndPassword(email, password)
+        await accessToken(email)
         const userData = { name, email, phone: '', education: '', address: '', github: '', role: 'customer', photo: '' }
         setUserInfo(userData)
         await updateProfile({ displayName: name })
@@ -44,7 +49,8 @@ const Register = () => {
             fetch('http://localhost:5000/users', {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(userInfo)
             })

@@ -15,7 +15,11 @@ const Purchase = () => {
     const { id } = useParams();
 
     const singleProduct = () => {
-        return axios.get(`http://localhost:5000/product/${id}`)
+        return axios.get(`http://localhost:5000/product/${id}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
     }
     const { data, isLoading, refetch } = useQuery('single product', singleProduct)
 
@@ -58,7 +62,7 @@ const Purchase = () => {
         const phone = e.target.phone.value;
         const qty = e.target.qty.value;
         console.log(data?.data.available >= data?.data.minOrder);
-        
+
         if (parseInt(data?.data.available) >= data?.data.minOrder) {
             const date = new Date();
             const today = date.getFullYear() + '-' + (date.getMonth()) + '-' + (date.getDate());
@@ -68,9 +72,10 @@ const Purchase = () => {
             fetch('http://localhost:5000/orders', {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
-                body: JSON.stringify({ product:data?.data.name, name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today })
+                body: JSON.stringify({ product: data?.data.name, name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -85,7 +90,8 @@ const Purchase = () => {
             fetch(`http://localhost:5000/product/${id}`, {
                 method: 'PATCH',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify({ available: updateAvailable })
             })

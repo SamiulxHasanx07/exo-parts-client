@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../fireabse.init';
+import useJWT from '../../hooks/useJWT';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
@@ -16,12 +17,13 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const accessToken = useJWT()
     const onSubmit = async (data) => {
         const { email, password } = data;
         console.log(email, password);
 
-        signInWithEmailAndPassword(email, password)
-
+        await signInWithEmailAndPassword(email, password)
+        await accessToken(email)
     };
 
     useEffect(() => {
@@ -29,8 +31,6 @@ const Login = () => {
             toast.error(error?.code);
         }
     }, [error])
-
-
 
     const location = useLocation();
     const navigate = useNavigate();

@@ -7,12 +7,16 @@ const MyProfile = () => {
     const [userInfo, setUserInfo] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`http://localhost:5000/user/${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json())
-            .then(data =>setUserInfo(data))
+            .then(data => setUserInfo(data))
     }, [user])
 
-    const {name, phone, education, address, github, photo } = userInfo;
+    const { name, phone, education, address, github, photo } = userInfo;
     return (
         <div>
             <div className="card w-[60%] mx-auto bg-base-100 shadow-xl  border-2 my-10">
@@ -27,18 +31,18 @@ const MyProfile = () => {
                         </div>
                         <div>
                             <div className='rounded-[100px] overflow-hidden'>
-                                <img className='w-[100px]' src={photo?photo:user?.photoURL} alt="" />
+                                <img className='w-[100px]' src={photo ? photo : user?.photoURL} alt="" />
                             </div>
                         </div>
                     </div>
                     <h3 className="text-2xl text-secondary">Phone</h3>
-                    <h3 className='text-secondary'>{phone?phone:'Not Available'}</h3>
+                    <h3 className='text-secondary'>{phone ? phone : 'Not Available'}</h3>
                     <h3 className="text-2xl text-secondary">Education</h3>
-                    <h3 className='text-secondary'>{education?education:'Not Available'}</h3>
+                    <h3 className='text-secondary'>{education ? education : 'Not Available'}</h3>
                     <h3 className="text-2xl text-secondary">Address</h3>
-                    <h3 className='text-secondary'>{address?address:'Not Available'}</h3>
+                    <h3 className='text-secondary'>{address ? address : 'Not Available'}</h3>
                     <h3 className="text-2xl text-secondary">Github Link</h3>
-                    <h3 className='text-secondary'>{github?github:'Not Available'}</h3>
+                    <h3 className='text-secondary'>{github ? github : 'Not Available'}</h3>
                     <Link to='/dashboard/updateprofile' className='btn btn-primary mt-8'>Update Info</Link>
                 </div>
             </div>

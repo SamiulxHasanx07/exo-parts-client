@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import auth from '../../fireabse.init';
 import { faGoogle, faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useJWT from '../../hooks/useJWT';
 const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
@@ -34,14 +35,43 @@ const SocialLogin = () => {
     const path = location.pathname;
     const pathValidation = path === '/login';
 
+    const accessToken = useJWT()
     useEffect(() => {
         if (googleUser || facebookUser || githubUser) {
             const googleEmail = googleUser?.user?.email;
             const facebookEmail = facebookUser?.user?.email;
             const githubEmail = githubUser?.user?.email;
-            navigate(from, { replace: true });
+            accessToken(googleEmail || facebookEmail || githubEmail)
+
+
+
+            if (googleUser || facebookUser || githubUser) {
+                const { email, displayName, photoURL } = googleUser?.user || facebookUser?.user || githubUser?.user;
+                const data = {
+                    name:displayName, email:email, phone:'', education:'', address:'', github:'', role:'customer', photo:photoURL
+
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        console.log(googleUser || facebookUser || githubUser);
+
+                    })
+            }
+
+
+            navigate(from, { replace: true })
+
         }
-    }, [googleUser, facebookUser, githubUser, navigate, from])
+    }, [googleUser, facebookUser, githubUser, navigate, from, accessToken])
 
     if (googleLoading || facebookLoading || githubLoading) {
         return <p>Loading</p>
@@ -51,9 +81,9 @@ const SocialLogin = () => {
             <div className="flex flex-col w-full border-opacity-50">
                 <div className="divider">OR</div>
 
-                <button onClick={() => signInWithGoogle()} className="mt-3 btn bg-red-700 text-white"><FontAwesomeIcon icon={faGoogle}/> <span className='ml-3'>Google {pathValidation?'Login':'Signup'}</span></button>
-                <button onClick={() => signInWithgithub()} className="mt-3 btn bg-green-800 text-white"><FontAwesomeIcon icon={faGithub}/> <span className='ml-3'>Github {pathValidation?'Login':'Signup'}</span></button>
-                <button onClick={() => signInWithFacebook()} className="mt-3 btn bg-blue-800 text-white"><FontAwesomeIcon icon={faFacebook}/> <span className='ml-3'>Facebook {pathValidation?'Login':'Signup'}</span></button>
+                <button onClick={() => signInWithGoogle()} className="mt-3 btn bg-red-700 text-white"><FontAwesomeIcon icon={faGoogle} /> <span className='ml-3'>Google {pathValidation ? 'Login' : 'Signup'}</span></button>
+                <button onClick={() => signInWithgithub()} className="mt-3 btn bg-green-800 text-white"><FontAwesomeIcon icon={faGithub} /> <span className='ml-3'>Github {pathValidation ? 'Login' : 'Signup'}</span></button>
+                <button onClick={() => signInWithFacebook()} className="mt-3 btn bg-blue-800 text-white"><FontAwesomeIcon icon={faFacebook} /> <span className='ml-3'>Facebook {pathValidation ? 'Login' : 'Signup'}</span></button>
             </div>
 
         </div>

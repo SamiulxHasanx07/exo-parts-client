@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../fireabse.init';
 
 const AddReview = () => {
     const [user] = useAuthState(auth)
-    const [userInfo, setUserInfo] =  useState(auth)
+    const [userInfo, setUserInfo] = useState(auth)
 
     useEffect(() => {
         fetch(`http://localhost:5000/user/${user?.email}`)
@@ -18,17 +19,22 @@ const AddReview = () => {
         const email = user?.email;
         const review = e.target.review.value;
         const rating = e.target.rating.value;
-        const img = user?.photoURL||userInfo?.photo;
+        const img = user?.photoURL || userInfo?.photo;
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ name, img, email, review, rating })
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if(data.acknowledged){
+                    toast.success('review added successfully')
+                }
+            })
 
         e.target.reset();
 
