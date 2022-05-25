@@ -11,7 +11,10 @@ const ManageProduct = ({ product, index, refetch }) => {
         console.log(`http://localhost:5000/product/${_id}`);
 
         fetch(`http://localhost:5000/product/${_id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
