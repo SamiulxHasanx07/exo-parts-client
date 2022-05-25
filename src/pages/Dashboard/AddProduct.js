@@ -21,7 +21,6 @@ const AddProduct = () => {
                 }
             })
     };
-    console.log(errors);
     return (
         <div>
             <h2 className='text-3xl text-secondary font-bold mb-3'>Add Product</h2>
