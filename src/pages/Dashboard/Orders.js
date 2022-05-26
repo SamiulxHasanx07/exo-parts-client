@@ -23,10 +23,10 @@ const Orders = () => {
 
     const { data, isLoading, refetch } = useQuery('user-orders', fetchData)
 
-    useEffect(()=>{
+    useEffect(() => {
 
         setOrders(data);
-    },[data])
+    }, [data])
 
     if (isLoading) {
         return <p>Loading....</p>
@@ -49,7 +49,6 @@ const Orders = () => {
                         </tr>
                     </thead>
                     <tbody>
-
                         {
                             orders?.map((order, index) => <Order key={order._id} singleOrder={order} index={index} refetch={refetch} />)
                         }

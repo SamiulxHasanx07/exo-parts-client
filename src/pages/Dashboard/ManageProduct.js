@@ -3,6 +3,7 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 const ManageProduct = ({ product, index, refetch }) => {
     const { _id, name, price, minOrder, available, description } = product;
 
@@ -10,19 +11,40 @@ const ManageProduct = ({ product, index, refetch }) => {
         console.log('delete product');
         console.log(`http://localhost:5000/product/${_id}`);
 
-        fetch(`http://localhost:5000/product/${_id}`, {
-            method: 'DELETE',
-            headers:{
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `${name} this product will permanently delete!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#36d399',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/product/${_id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            // toast.success('Successfully deleted!!');
+                            // refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Product has been Deleted.',
+                                'success'
+                            )
+                            refetch();
+                        }
+                    })
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount) {
-                    toast.success('Successfully deleted!!');
-                    refetch();
-                }
-            })
+
     }
     return (
         <tr>
