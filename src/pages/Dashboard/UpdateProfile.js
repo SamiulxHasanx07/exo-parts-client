@@ -9,7 +9,7 @@ const UpdateProfile = () => {
 
     const [userInfo, setUserInfo] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        fetch(`https://exo-parts.herokuapp.com/user/${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -21,7 +21,7 @@ const UpdateProfile = () => {
     const { name, email, education, photo, github, address, phone } = userInfo;
 
     const onSubmit = async data => {
-        const url = `http://localhost:5000/user/${email}`;
+        const url = `https://exo-parts.herokuapp.com/user/${email}`;
         fetch(url, {
             method: 'PATCH',
             headers: {

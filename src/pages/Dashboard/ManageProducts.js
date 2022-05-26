@@ -4,7 +4,7 @@ import axios from 'axios';
 import ManageProduct from './ManageProduct'
 const ManageProducts = () => {
     const getProducts = () => {
-        return axios.get('http://localhost:5000/products')
+        return axios.get('https://exo-parts.herokuapp.com/products')
     }
     const { data: products, isLoading, refetch } = useQuery('admin-product', getProducts)
     if(isLoading){

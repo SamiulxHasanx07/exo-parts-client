@@ -16,7 +16,7 @@ const Purchase = () => {
     const { id } = useParams();
 
     const singleProduct = () => {
-        return axios.get(`http://localhost:5000/product/${id}`, {
+        return axios.get(`https://exo-parts.herokuapp.com/product/${id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -91,7 +91,7 @@ const Purchase = () => {
 
             const price = qty * data?.data.price;
 
-            fetch('http://localhost:5000/orders', {
+            fetch('https://exo-parts.herokuapp.com/orders', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -109,7 +109,7 @@ const Purchase = () => {
 
             const updateAvailable = data?.data.available - qty;
 
-            fetch(`http://localhost:5000/product/${id}`, {
+            fetch(`https://exo-parts.herokuapp.com/product/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

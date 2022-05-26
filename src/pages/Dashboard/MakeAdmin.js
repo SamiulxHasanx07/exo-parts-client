@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const MakeAdmin = () => {
     const getProducts = () => {
-        return axios.get('http://localhost:5000/users')
+        return axios.get('https://exo-parts.herokuapp.com/users')
     }
     const { data: userTable, refetch, isLoading } = useQuery('make-admin', getProducts)
     const makeAdmin = (email) => {
@@ -21,7 +21,7 @@ const MakeAdmin = () => {
                 confirmButtonText: 'Yes, Assign Admin!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    const url = `http://localhost:5000/make-admin/${email}`
+                    const url = `https://exo-parts.herokuapp.com/make-admin/${email}`
                     fetch(url, {
                         method: 'PATCH',
                         headers: {
@@ -60,7 +60,7 @@ const MakeAdmin = () => {
                 confirmButtonText: 'Yes, Remove Admin!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    const url = `http://localhost:5000/remove-admin/${email}`
+                    const url = `https://exo-parts.herokuapp.com/remove-admin/${email}`
                     fetch(url, {
                         method: 'PATCH',
                         headers: {

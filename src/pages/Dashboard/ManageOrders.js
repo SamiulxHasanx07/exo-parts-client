@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 const ManageOrders = () => {
 
     const fetchData = () => {
-        return fetch('http://localhost:5000/orders', { headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).then(res => {
+        return fetch('https://exo-parts.herokuapp.com/orders', { headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).then(res => {
             if (res.status === 401 || res.status === 403) {
                 signOut(auth)
                 Navigate('/login')
@@ -34,7 +34,7 @@ const ManageOrders = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/order/${id}`, {
+                fetch(`https://exo-parts.herokuapp.com/order/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -55,8 +55,8 @@ const ManageOrders = () => {
         })
     }
     const handleShipped = (id) => {
-        const url = `http://localhost:5000/manageshipped/${id}`
-        fetch(`http://localhost:5000/manageshipped/${id}`, {
+        const url = `https://exo-parts.herokuapp.com/manageshipped/${id}`
+        fetch(`https://exo-parts.herokuapp.com/manageshipped/${id}`, {
             method: 'PATCH',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

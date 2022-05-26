@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Products = () => {
     const getProducts = () => {
-        return axios.get('http://localhost:5000/products')
+        return axios.get('https://exo-parts.herokuapp.com/products')
     }
     const { data: products, isLoading, refetch } = useQuery('products', getProducts)
     return (

@@ -9,7 +9,7 @@ const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_SECRET}`);
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://exo-parts.herokuapp.com/order/${id}`;
 
     const { data: order, isLoading } = useQuery(['order', id], () => fetch(url, {
         method: 'GET',

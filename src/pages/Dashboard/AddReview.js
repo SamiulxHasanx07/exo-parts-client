@@ -8,7 +8,7 @@ const AddReview = () => {
     const [userInfo, setUserInfo] = useState(auth)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`, {
+        fetch(`https://exo-parts.herokuapp.com/user/${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -25,7 +25,7 @@ const AddReview = () => {
         const rating = e.target.rating.value;
         const img = user?.photoURL || userInfo?.photo;
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://exo-parts.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

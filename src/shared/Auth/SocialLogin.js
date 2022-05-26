@@ -51,7 +51,7 @@ const SocialLogin = () => {
                     name: displayName, email: email, phone: '', education: '', address: '', github: '', role: 'customer', photo: photoURL
 
                 }
-                fetch('http://localhost:5000/users', {
+                fetch('https://exo-parts.herokuapp.com/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

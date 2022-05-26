@@ -18,7 +18,7 @@ const ManageProduct = ({ product, index, refetch }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/product/${_id}`, {
+                fetch(`https://exo-parts.herokuapp.com/product/${_id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`

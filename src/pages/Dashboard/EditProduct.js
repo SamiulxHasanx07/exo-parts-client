@@ -9,7 +9,7 @@ const EditProduct = () => {
     const { id } = useParams()
     const { register, handleSubmit, formState: { errors } } = useForm();
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://exo-parts.herokuapp.com/product/${id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -20,7 +20,7 @@ const EditProduct = () => {
     }, [id])
     const { name, price, minOrder, available, image, description } = product;
     const onSubmit = data => {
-        const url = `http://localhost:5000/pd/${id}`;
+        const url = `https://exo-parts.herokuapp.com/pd/${id}`;
         fetch(url, {
             method: 'PATCH',
             headers: {

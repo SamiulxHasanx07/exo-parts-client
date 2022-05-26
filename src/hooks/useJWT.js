@@ -1,6 +1,6 @@
 const useJWT = () => {
     const accessToken = (email) => {
-        fetch('http://localhost:5000/login', {
+        fetch('https://exo-parts.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

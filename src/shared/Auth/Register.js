@@ -46,7 +46,7 @@ const Register = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if (user) {
-            fetch('http://localhost:5000/users', {
+            fetch('https://exo-parts.herokuapp.com/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -56,7 +56,7 @@ const Register = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    
+
                 })
             navigate('/home')
         }

@@ -11,7 +11,7 @@ const Orders = () => {
     const [user] = useAuthState(auth)
     const navigate = useNavigate();
     const fetchData = () => {
-        return fetch(`http://localhost:5000/orders/${user?.email}`, { headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).then(res => {
+        return fetch(`https://exo-parts.herokuapp.com/orders/${user?.email}`, { headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).then(res => {
             if (res.status === 401 || res.status === 403) {
                 signOut(auth)
                 navigate('/login')
