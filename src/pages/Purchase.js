@@ -11,8 +11,10 @@ const Purchase = () => {
     const [user] = useAuthState(auth)
     const [disabled, setDisabled] = useState(false)
     const [inputValue, setInputValue] = useState('')
+    const [minQty, setMinQty] = useState(0);
     const [inputValueError, setInputValueError] = useState('')
     const { id } = useParams();
+    // console.log(minQty);
 
     const singleProduct = () => {
         return axios.get(`http://localhost:5000/product/${id}`, {
@@ -26,20 +28,15 @@ const Purchase = () => {
     // const url =  `http://localhost:5000/product/${id}`;
     // const { data, isLoading, refetch } = useGetData(url, 'single data')
 
+    useEffect(() => {
+        
+        setMinQty(data?.data.minOrder)
+    }, [data?.data.minOrder])
 
-    console.log(user);
 
-
-    if (isLoading) {
-        return <p>Loading...</p>
-    }
-
-    const userInput = (e) => {
-        setInputValue(e.target.value)
-        const minOrder = parseInt(data?.data.minOrder)
-        const userData = parseInt(e.target.value);
-        if (userData > 0) {
-            const minValidation = userData < minOrder || userData > data?.data.available;
+    useEffect(() => {
+        if (minQty > 0) {
+            const minValidation = minQty < data?.data.minOrder || minQty > data?.data.available;
             if (minValidation) {
                 setDisabled(true)
             } else {
@@ -47,12 +44,41 @@ const Purchase = () => {
             }
         }
 
-        if (userData === '' || userData < 1) {
+
+        if (minQty === '' || minQty < 1) {
             setInputValueError(true)
         } else {
 
             setInputValueError(false)
         }
+    }, [minQty])
+
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
+
+    console.log(minQty);
+
+    const userInput = (e) => {
+        // setInputValue(e.target.value)
+        const userData = parseInt(e.target.value);
+        // const minOrder = parseInt(data?.data.minOrder)
+        setMinQty(e.target.value)
+        // if (userData > 0) {
+        //     const minValidation = userData < minOrder || userData > data?.data.available;
+        //     if (minValidation) {
+        //         setDisabled(true)
+        //     } else {
+        //         setDisabled(false)
+        //     }
+        // }
+
+        // if (userData === '' || userData < 1) {
+        //     setInputValueError(true)
+        // } else {
+
+        //     setInputValueError(false)
+        // }
     }
 
     const placeOrder = (e) => {
@@ -105,6 +131,46 @@ const Purchase = () => {
     }
 
 
+    const descreaseNumber = () => {
+        setMinQty(parseInt(minQty) - 1)
+        // if (minQty > 0) {
+        //     const minValidation = minQty < data?.data.minOrder || minQty > data?.data.available;
+        //     if (minValidation) {
+        //         setDisabled(true)
+        //     } else {
+        //         setDisabled(false)
+        //     }
+        // }
+
+
+        // if (minQty === '' || minQty < 1) {
+        //     setInputValueError(true)
+        // } else {
+
+        //     setInputValueError(false)
+        // }
+    }
+    const increaseNumber = () => {
+        setMinQty(parseInt(minQty) + 1)
+
+
+        // if (minQty > 0) {
+        //     const minValidation = minQty < data?.data.minOrder || minQty > data?.data.available;
+        //     if (minValidation) {
+        //         setDisabled(true)
+        //     } else {
+        //         setDisabled(false)
+        //     }
+        // }
+
+        // if (minQty === '' || minQty < 1) {
+        //     setInputValueError(true)
+        // } else {
+
+        //     setInputValueError(false)
+        // }
+    }
+
     return (
         <div className='container mx-auto'>
             <div className="card lg:card-side bg-base-100 shadow-xl p-16 my-10">
@@ -140,11 +206,16 @@ const Purchase = () => {
                     </div>
                     <div className="">
                         <form onSubmit={placeOrder}>
-                            <input name='qty' onChange={userInput} type="number" defaultValue={data?.data.minOrder} placeholder="Enter Quantity" className="input input-bordered w-full  mt-10" />
+                            <div className='d-flex '>
+                                <span onClick={descreaseNumber} className='btn btn-success'>-</span>
+                                <input name='qty' onChange={userInput} type="text" defaultValue={minQty} placeholder="Enter Quantity" className="input input-bordered  mt-10" />
+                                <span onClick={increaseNumber} className='btn btn-success'>+</span>
+                            </div>
                             {
-                                inputValueError ? <label className='text-red-700 block'>Please Enter Valid Number</label> : ''
+                                inputValueError ? <span className='text-red-700 block'>Please Enter Valid Number</span> : ''
                             }
-                            {disabled && <label className='text-red-700'>Minimum Qty: {data?.data.minOrder}  {data?.data.available > data?.data.minOrder ? `& Maximum Qty: ${data?.data.available}` : ''}</label>}
+                            {disabled && <span className='text-red-700'>Minimum Qty: {data?.data.minOrder}  {data?.data.available > data?.data.minOrder ? `& Maximum Qty: ${data?.data.available}` : ''}</span>}
+
                             <input required type="text" name='phone' placeholder='Phone Number' className="input input-bordered w-full  mt-10" />
                             <input disabled type="text" className="input input-bordered w-full  mt-10" value={user && user.email} />
                             <textarea required name='shipping' type="text" className="input input-bordered w-full mt-10" placeholder='Enter Your Shipping Address' />
