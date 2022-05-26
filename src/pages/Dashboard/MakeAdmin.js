@@ -4,15 +4,10 @@ import { useQuery } from 'react-query';
 import Swal from 'sweetalert2';
 
 const MakeAdmin = () => {
-
     const getProducts = () => {
         return axios.get('http://localhost:5000/users')
     }
-
     const { data: userTable, refetch, isLoading } = useQuery('make-admin', getProducts)
-    console.log(userTable?.data);
-
-
     const makeAdmin = (email) => {
         if (email) {
 
@@ -46,15 +41,12 @@ const MakeAdmin = () => {
                             }
                             refetch()
                         })
-
                 }
             })
         }
     }
-
-
     if (isLoading) {
-        return <p>Loading...</p>
+        return <button class="btn btn-square bg-primary loading"></button>
     }
     const makeCustomer = (email) => {
         if (email) {

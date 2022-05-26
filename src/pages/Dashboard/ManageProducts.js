@@ -3,15 +3,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import ManageProduct from './ManageProduct'
 const ManageProducts = () => {
-
     const getProducts = () => {
         return axios.get('http://localhost:5000/products')
     }
-
     const { data: products, isLoading, refetch } = useQuery('admin-product', getProducts)
-
     if(isLoading){
-        return <p>Loading...</p>
+        return <button class="btn btn-square bg-primary loading"></button>
     }
     return (
         <div className='px-3 md:px-0 lg:px-0'>

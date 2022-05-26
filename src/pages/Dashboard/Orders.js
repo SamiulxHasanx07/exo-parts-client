@@ -29,7 +29,7 @@ const Orders = () => {
     }, [data])
 
     if (isLoading) {
-        return <p>Loading....</p>
+        return <button class="btn btn-square bg-primary loading"></button>
     }
     return (
         <div>

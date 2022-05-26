@@ -8,11 +8,8 @@ const RequireAuth = ({ children }) => {
     const location = useLocation();
     const [user, loading] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
-
-    console.log(admin);
-    
     if (loading) {
-        return <p>Loading</p>
+        return <button class="btn btn-square bg-primary loading"></button>
     }
 
     if (!user) {

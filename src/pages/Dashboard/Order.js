@@ -4,11 +4,7 @@ import Swal from 'sweetalert2';
 
 const Order = ({ singleOrder, index, refetch }) => {
     const { _id, product, name, email, price, address, qty, status, date, transactionId } = singleOrder;
-
-
-
     const deleteOrder = () => {
-
         Swal.fire({
             title: 'Are you sure?',
             text: `${product} this product will permanently delete!`,
@@ -48,10 +44,10 @@ const Order = ({ singleOrder, index, refetch }) => {
             <td>{qty}</td>
             <td>${price}</td>
             <td>{date}</td>
-            <td><span className={`px-2 py-1 rounded-md ${status!=='unpaid'?'bg-green-500':'bg-yellow-300'}`}>{status}</span></td>
+            <td><span className={`px-2 py-1 rounded-md ${status !== 'unpaid' ? 'bg-green-500' : 'bg-yellow-300'}`}>{status}</span></td>
             <td>
                 {
-                    status === 'paid' ? 'TXN :'+ transactionId : <>
+                    status === 'paid' ? 'TXN :' + transactionId : <>
 
                         <Link to={`/dashboard/payment/${_id}`} className='btn btn-sm btn-success'>Pay Now</Link>
                         <button onClick={deleteOrder} className='ml-3 btn btn-sm bg-red-400'>Cancel</button>

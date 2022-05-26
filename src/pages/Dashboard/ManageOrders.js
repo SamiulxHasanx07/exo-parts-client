@@ -19,16 +19,11 @@ const ManageOrders = () => {
 
         })
     }
-
     const { data, isLoading, refetch } = useQuery('admin-orders', fetchData)
-    console.log(data);
-
     if (isLoading) {
-        return <p>loading...</p>
+        return <button class="btn btn-square loading"></button>
     }
-
     const deleteProduct = (name, id) => {
-
         Swal.fire({
             title: 'Are you sure?',
             text: `${name} this product will permanently delete!`,
@@ -67,13 +62,13 @@ const ManageOrders = () => {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.modifiedCount){
-                toast.success('Shipped Product');
-                refetch()
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    toast.success('Shipped Product');
+                    refetch()
+                }
+            })
     }
     return (
         <div className='px-3 md:px-0 lg:px-0'>

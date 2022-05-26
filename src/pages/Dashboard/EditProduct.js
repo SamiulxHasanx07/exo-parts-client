@@ -8,7 +8,6 @@ const EditProduct = () => {
     const [product, setProduct] = useState({});
     const { id } = useParams()
     const { register, handleSubmit, formState: { errors } } = useForm();
-
     useEffect(() => {
         fetch(`http://localhost:5000/product/${id}`, {
             headers: {
@@ -19,10 +18,7 @@ const EditProduct = () => {
             .then(data => setProduct(data))
 
     }, [id])
-
     const { name, price, minOrder, available, image, description } = product;
-
-
     const onSubmit = data => {
         const url = `http://localhost:5000/pd/${id}`;
         fetch(url, {
@@ -59,8 +55,6 @@ const EditProduct = () => {
                 {errors.image?.type === "required" && <span className='text-red-600'>Required [Click Edit Button Again to keep default data]</span>}
                 <textarea defaultValue={description} className='input input-bordered w-full mt-3'  {...register("description", { required: true })} />
                 {errors.description?.type === "required" && <span className='text-red-600'>Required [Click Edit Button Again to keep default data]</span>}
-
-
                 <input className='btn btn-success w-full mt-3' type="submit" value='Edit' />
             </form>
         </div>

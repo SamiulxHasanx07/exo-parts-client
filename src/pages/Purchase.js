@@ -14,7 +14,6 @@ const Purchase = () => {
     const [minQty, setMinQty] = useState(0);
     const [inputValueError, setInputValueError] = useState('')
     const { id } = useParams();
-    // console.log(minQty);
 
     const singleProduct = () => {
         return axios.get(`http://localhost:5000/product/${id}`, {
@@ -54,11 +53,8 @@ const Purchase = () => {
     }, [minQty])
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <button class="btn btn-square loading"></button>
     }
-
-    console.log(minQty);
-
     const userInput = (e) => {
         setInputValue(e.target.value)
         const userData = parseInt(e.target.value);
@@ -173,7 +169,7 @@ const Purchase = () => {
 
     return (
         <div className='container mx-auto'>
-            <div className="card lg:card-side bg-base-100 shadow-xl p-16 my-10">
+            <div className="card lg:card-side bg-base-100 shadow-xl px-2 md:px-0 lg:px-0 lg:p-16 p-0 my-10">
                 <figure>
                     <img src={`${data?.data.image}`} className='w-[400px]' alt="Album" />
                 </figure>

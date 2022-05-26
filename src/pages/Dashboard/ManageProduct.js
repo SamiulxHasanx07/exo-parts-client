@@ -1,17 +1,12 @@
 import React from 'react';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 const ManageProduct = ({ product, index, refetch }) => {
     const { _id, name, price, minOrder, available, description } = product;
 
     const deleteProduct = () => {
-        console.log('delete product');
-        console.log(`http://localhost:5000/product/${_id}`);
-
-
         Swal.fire({
             title: 'Are you sure?',
             text: `${name} this product will permanently delete!`,

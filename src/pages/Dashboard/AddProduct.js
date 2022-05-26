@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-
 const AddProduct = () => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {

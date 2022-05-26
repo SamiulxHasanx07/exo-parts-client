@@ -3,17 +3,13 @@ import { useQuery } from 'react-query';
 import Review from './Review';
 
 const Reviews = () => {
-
     const fetchData = () => {
         return fetch('http://localhost:5000/reviews').then(res => res.json())
     }
-    
     const { data: reviews, isLoading, refetch } = useQuery('reviews', fetchData)
-
     if (isLoading) {
         return <p>Loading ...</p>
     }
-
     return (
         <div className='py-28 bg-yellow-50'>
             <div className='container mx-auto'>
@@ -24,10 +20,6 @@ const Reviews = () => {
                         reviews.map(review => <Review key={review._id} singleReview={review} />)
                     }
                 </div>
-
-
-
-
             </div>
         </div>
     );

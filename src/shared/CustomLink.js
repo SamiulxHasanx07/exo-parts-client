@@ -11,7 +11,7 @@ const CustomLink = ({ children, to, ...props }) => {
     return (
         <>
             <Link
-                className={`${match ? 'btn btn-secondary bg-black text-white' : 'btn btn-ghost'} ${pathValidate?'mt-3':''}` }
+                className={`${match ? 'btn btn-secondary bg-black text-white' : 'btn btn-ghost'} ${pathValidate ? 'mt-3' : ''}`}
                 to={to}
                 {...props}
             >

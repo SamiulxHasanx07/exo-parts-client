@@ -20,8 +20,6 @@ const Login = () => {
     const accessToken = useJWT()
     const onSubmit = async (data) => {
         const { email, password } = data;
-        console.log(email, password);
-
         await signInWithEmailAndPassword(email, password)
         await accessToken(email)
     };

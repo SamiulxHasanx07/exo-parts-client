@@ -48,7 +48,7 @@ const SocialLogin = () => {
             if (googleUser || facebookUser || githubUser) {
                 const { email, displayName, photoURL } = googleUser?.user || facebookUser?.user || githubUser?.user;
                 const data = {
-                    name:displayName, email:email, phone:'', education:'', address:'', github:'', role:'customer', photo:photoURL
+                    name: displayName, email: email, phone: '', education: '', address: '', github: '', role: 'customer', photo: photoURL
 
                 }
                 fetch('http://localhost:5000/users', {
@@ -61,12 +61,9 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                        console.log(googleUser || facebookUser || githubUser);
 
                     })
             }
-
 
             navigate(from, { replace: true })
 

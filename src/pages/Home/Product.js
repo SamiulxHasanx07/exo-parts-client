@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
-    console.log(product);
-    
     return (
         <div>
             <div className="card w-full bg-base-100 border-2 mx-auto">
