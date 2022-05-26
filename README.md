@@ -10,6 +10,7 @@ Exo Parts is an car parts manufacturer. Exo Parts website have order facilities 
 * React Firebase Hooks
 * TailwindCSS
 * DaisyUi
+* Stripe (payment system)
 * FontAwesome
 * Toastify
 * SweetAlert
