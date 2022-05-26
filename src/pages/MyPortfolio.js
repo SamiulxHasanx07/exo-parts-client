@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyPortfolio = () => {
     return (
-        <div className='py-4 mx-auto container'>
+        <div className='py-4 mx-auto container' style={{minHeight:'80vh'}}>
 
             <h2 className='text-3xl font-bold text-secondary mb-3'>My Portfolio</h2>
             <div>

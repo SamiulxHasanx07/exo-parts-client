@@ -80,7 +80,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 
-const stripePromise = loadStripe('pk_test_51L0VrqIhFMxmfhvTxZfbtWVblrpI6lWhiGFbTXXeXrBolGMs5Q3QtJmBdTEG3vT0uOIuzTHuOzuU9AZhLY2f2Wn100kExFrrQe');
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_SECRET}`);
 
 const Payment = () => {
     const { id } = useParams();
