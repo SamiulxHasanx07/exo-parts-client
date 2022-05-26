@@ -115,8 +115,8 @@ const MakeAdmin = () => {
                                 <td>{singleUser?.email}</td>
                                 <td>{singleUser?.role}</td>
                                 <td>
-                                    <div class="avatar">
-                                        <div class="w-8 rounded">
+                                    <div className="avatar">
+                                        <div className="w-8 rounded">
                                             <img src={singleUser.photo} alt="Tailwind-CSS-Avatar-component" />
                                         </div>
                                     </div>

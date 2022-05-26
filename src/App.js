@@ -22,6 +22,8 @@ import ManageOrders from './pages/Dashboard/ManageOrders';
 import ManageProducts from './pages/Dashboard/ManageProducts';
 import EditProduct from './pages/Dashboard/EditProduct';
 import Payment from './pages/Dashboard/Payment';
+import Blog from './pages/Blog';
+import MyPortfolio from './pages/MyPortfolio';
 
 function App() {
   const location = useLocation();
@@ -54,6 +56,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='home' element={<Home></Home>}></Route>
+            <Route path='blog' element={<Blog></Blog>}></Route>
+          <Route path='myportfolio' element={<MyPortfolio></MyPortfolio>}></Route>
             <Route path='purchase/:id' element={
               <RequireAuth>
                 <Purchase />

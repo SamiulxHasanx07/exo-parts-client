@@ -32,8 +32,8 @@
 //     return (
 //         <div>
 //             <h2 className='text-3xl font-bold text-secondary'>Payment for</h2>
-//             <div class="overflow-x-auto py-3">
-//                 <table class="table w-full">
+//             <div className="overflow-x-auto py-3">
+//                 <table className="table w-full">
 //                     <thead>
 //                         <tr>
 //                             <th></th>
@@ -59,8 +59,8 @@
 
 //             <div>
 
-//                 <div class="card w-96 bg-base-100 shadow-xl">
-//                     <div class="card-body">
+//                 <div className="card w-96 bg-base-100 shadow-xl">
+//                     <div className="card-body">
 //                         <Elements stripe={stripePromise}>
 //                             <CheckoutForm order={order} />
 //                         </Elements>
@@ -99,8 +99,8 @@ const Payment = () => {
 
     return (
         <div>
-            <div class="overflow-x-auto py-3">
-                <table class="table w-full">
+            <div className="overflow-x-auto py-3">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -123,8 +123,8 @@ const Payment = () => {
                     </tbody>
                 </table>
             </div>
-            <div class="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
-                <div class="card-body">
+            <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
+                <div className="card-body">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm order={order} />
                     </Elements>

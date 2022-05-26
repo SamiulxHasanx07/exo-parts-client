@@ -12,7 +12,8 @@ const Navbar = () => {
         <>
             <li>
                 <CustomLink to='/'>Home</CustomLink>
-                <CustomLink to='/about'>About</CustomLink>
+                <CustomLink to='/blog'>Blog</CustomLink>
+                <CustomLink to='/myportfolio'>My Portfolio</CustomLink>
                 <p className={`${user?'':'hidden'}`}>{user?.displayName}</p>
                 {user ?'':  <CustomLink to='/login'>Login</CustomLink>}
                 {user ?'':  <CustomLink to='/register'>Register</CustomLink>}

@@ -55,9 +55,9 @@ const ManageProduct = ({ product, index, refetch }) => {
             <td>{available}</td>
             <td title={description}>{description.slice(0, 25)}</td>
             <td>
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn btn-ghost m-1"><FontAwesomeIcon icon={faEllipsisVertical} /></label>
-                    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                <div className="dropdown dropdown-end">
+                    <label tabIndex="0" className="btn btn-ghost m-1"><FontAwesomeIcon icon={faEllipsisVertical} /></label>
+                    <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
                             <Link className='btn btn-ghost' to={`/dashboard/editproducts/${_id}`}>Edit Product</Link>
                         </li>
