@@ -12,7 +12,7 @@ const RequireAdmin = ({ children }) => {
 
     
     if (loading || adminLoading) {
-        return <p>Loading...</p>
+        return <button className="btn btn-square bg-primary loading"></button>
     }
 
     if (admin==='customer') {

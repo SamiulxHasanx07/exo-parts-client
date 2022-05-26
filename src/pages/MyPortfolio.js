@@ -5,8 +5,8 @@ const MyPortfolio = () => {
         <div className='px-4 lg:px-0 py-4 mx-auto container' style={{ minHeight: '80vh' }}>
             <h2 className='text-3xl font-bold text-secondary mb-3'>My Portfolio</h2>
             <div>
-                <div class="overflow-x-auto">
-                    <table class="table w-full">
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
                         <tbody>
                             <tr>
                                 <th>Name:</th>

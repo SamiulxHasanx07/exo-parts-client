@@ -19,7 +19,7 @@ const Payment = () => {
     }).then(res => res.json()));
 
     if (isLoading) {
-        return <button class="btn btn-square bg-primary loading"></button>
+        return <button className="btn btn-square bg-primary loading"></button>
     }
 
     return (

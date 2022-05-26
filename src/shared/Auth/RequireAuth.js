@@ -9,7 +9,7 @@ const RequireAuth = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
     if (loading) {
-        return <button class="btn btn-square bg-primary loading"></button>
+        return <button className="btn btn-square bg-primary loading"></button>
     }
 
     if (!user) {

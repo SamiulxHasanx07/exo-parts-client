@@ -23,9 +23,7 @@ const Purchase = () => {
         })
     }
     const { data, isLoading, refetch } = useQuery('single product', singleProduct)
-
-    // const url =  `http://localhost:5000/product/${id}`;
-    // const { data, isLoading, refetch } = useGetData(url, 'single data')
+    console.log(minQty);
 
     useEffect(() => {
 
@@ -53,7 +51,7 @@ const Purchase = () => {
     }, [minQty])
 
     if (isLoading) {
-        return <button class="btn btn-square loading"></button>
+        return <button className="btn btn-square loading"></button>
     }
     const userInput = (e) => {
         setInputValue(e.target.value)
@@ -61,11 +59,13 @@ const Purchase = () => {
         const minOrder = parseInt(data?.data.minOrder)
         setMinQty(e.target.value)
         if (userData > 0) {
-            const minValidation = userData < minOrder || userData > data?.data.available;
+            const minValidation = userData < minOrder || userData < data?.data.available;
             if (minValidation) {
                 setDisabled(true)
+                // setInputValueError(true)
             } else {
                 setDisabled(false)
+                // setInputValueError(false)
             }
         }
 
@@ -129,42 +129,9 @@ const Purchase = () => {
 
     const descreaseNumber = () => {
         setMinQty(parseInt(minQty) - 1)
-        // if (minQty > 0) {
-        //     const minValidation = minQty < data?.data.minOrder || minQty > data?.data.available;
-        //     if (minValidation) {
-        //         setDisabled(true)
-        //     } else {
-        //         setDisabled(false)
-        //     }
-        // }
-
-
-        // if (minQty === '' || minQty < 1) {
-        //     setInputValueError(true)
-        // } else {
-
-        //     setInputValueError(false)
-        // }
     }
     const increaseNumber = () => {
         setMinQty(parseInt(minQty) + 1)
-
-
-        // if (minQty > 0) {
-        //     const minValidation = minQty < data?.data.minOrder || minQty > data?.data.available;
-        //     if (minValidation) {
-        //         setDisabled(true)
-        //     } else {
-        //         setDisabled(false)
-        //     }
-        // }
-
-        // if (minQty === '' || minQty < 1) {
-        //     setInputValueError(true)
-        // } else {
-
-        //     setInputValueError(false)
-        // }
     }
 
     return (

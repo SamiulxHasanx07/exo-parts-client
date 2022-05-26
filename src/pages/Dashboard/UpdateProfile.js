@@ -21,11 +21,7 @@ const UpdateProfile = () => {
     const { name, email, education, photo, github, address, phone } = userInfo;
 
     const onSubmit = async data => {
-        console.log(data)
-
         const url = `http://localhost:5000/user/${email}`;
-        console.log(url);
-
         fetch(url, {
             method: 'PATCH',
             headers: {

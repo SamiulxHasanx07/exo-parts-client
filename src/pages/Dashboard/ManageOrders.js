@@ -21,7 +21,7 @@ const ManageOrders = () => {
     }
     const { data, isLoading, refetch } = useQuery('admin-orders', fetchData)
     if (isLoading) {
-        return <button class="btn btn-square loading"></button>
+        return <button className="btn btn-square loading"></button>
     }
     const deleteProduct = (name, id) => {
         Swal.fire({

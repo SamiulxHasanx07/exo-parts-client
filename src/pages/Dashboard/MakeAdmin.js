@@ -46,7 +46,7 @@ const MakeAdmin = () => {
         }
     }
     if (isLoading) {
-        return <button class="btn btn-square bg-primary loading"></button>
+        return <button className="btn btn-square bg-primary loading"></button>
     }
     const makeCustomer = (email) => {
         if (email) {

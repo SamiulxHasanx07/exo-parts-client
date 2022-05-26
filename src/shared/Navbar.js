@@ -14,7 +14,7 @@ const Navbar = () => {
                 <CustomLink to='/'>Home</CustomLink>
                 <CustomLink to='/blog'>Blog</CustomLink>
                 <CustomLink to='/myportfolio'>My Portfolio</CustomLink>
-                <div className='flex justify-center'>
+                <div className={`${user ? '' : 'hidden'} flex justify-center`}>
                     <p className={`${user ? '' : 'hidden'} text-center`}>{user?.displayName}</p>
                 </div>
                 {user ? '' : <CustomLink to='/login'>Login</CustomLink>}
@@ -22,7 +22,9 @@ const Navbar = () => {
                 {
                     user ? <CustomLink to='/dashboard'>Dashboard</CustomLink> : ''
                 }
-
+                {
+                    user?.photoURL? <img className='w-[60px]' src={user.photoURL} alt="" />:''
+                }
 
                 {user && <button className='btn btn-secondary text-white' onClick={() => signOut(auth)}>Sign Out <FontAwesomeIcon icon={faArrowRightFromBracket} /></button>}
             </li>

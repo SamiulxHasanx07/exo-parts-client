@@ -8,7 +8,7 @@ const ManageProducts = () => {
     }
     const { data: products, isLoading, refetch } = useQuery('admin-product', getProducts)
     if(isLoading){
-        return <button class="btn btn-square bg-primary loading"></button>
+        return <button className="btn btn-square bg-primary loading"></button>
     }
     return (
         <div className='px-3 md:px-0 lg:px-0'>
