@@ -30,7 +30,8 @@ const MakeAdmin = () => {
                     fetch(url, {
                         method: 'PATCH',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         }
                     })
                         .then(res => res.json())
@@ -71,7 +72,8 @@ const MakeAdmin = () => {
                     fetch(url, {
                         method: 'PATCH',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         }
                     })
                         .then(res => res.json())

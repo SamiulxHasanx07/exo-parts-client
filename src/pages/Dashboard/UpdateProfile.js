@@ -52,7 +52,7 @@ const UpdateProfile = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input defaultValue={user?.displayName} className="input input-bordered w-full mb-2" type="text" placeholder="name" disabled />
 
-                <input defaultValue={email||user.email} disabled className="input input-bordered w-full mb-2" type="email" placeholder="email" />
+                <input defaultValue={email || user.email} disabled className="input input-bordered w-full mb-2" type="email" placeholder="email" />
 
                 <input defaultValue={photo} className="input input-bordered w-full mb-2" type="text" placeholder="Profile Photo Url" {...register("photo", { required: true })} />
                 {errors.photo?.type === "required" && <span className='text-red-600'>Required [Click Update Button Again to keep default data]</span>}

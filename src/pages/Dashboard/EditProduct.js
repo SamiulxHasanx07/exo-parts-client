@@ -10,7 +10,11 @@ const EditProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`http://localhost:5000/product/${id}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setProduct(data))
 
@@ -24,7 +28,8 @@ const EditProduct = () => {
         fetch(url, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(data)
         })
@@ -39,7 +44,7 @@ const EditProduct = () => {
     return (
         <div>
             <h2 className='text-3xl font-bold text-secondary'>Edit Product</h2>
-            <Link className='btn btn-warning my-3' to='/dashboard/manageproducts'><FontAwesomeIcon icon={faArrowLeft}/><span className='ml-3'>Go to Manage Product</span></Link>
+            <Link className='btn btn-warning my-3' to='/dashboard/manageproducts'><FontAwesomeIcon icon={faArrowLeft} /><span className='ml-3'>Go to Manage Product</span></Link>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input defaultValue={name} className='input input-bordered w-full mt-3' type="text" placeholder="name" {...register("name", { required: true })} />

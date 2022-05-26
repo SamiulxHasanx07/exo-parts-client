@@ -29,7 +29,7 @@ const Purchase = () => {
     // const { data, isLoading, refetch } = useGetData(url, 'single data')
 
     useEffect(() => {
-        
+
         setMinQty(data?.data.minOrder)
     }, [data?.data.minOrder])
 
@@ -60,25 +60,25 @@ const Purchase = () => {
     console.log(minQty);
 
     const userInput = (e) => {
-        // setInputValue(e.target.value)
+        setInputValue(e.target.value)
         const userData = parseInt(e.target.value);
-        // const minOrder = parseInt(data?.data.minOrder)
+        const minOrder = parseInt(data?.data.minOrder)
         setMinQty(e.target.value)
-        // if (userData > 0) {
-        //     const minValidation = userData < minOrder || userData > data?.data.available;
-        //     if (minValidation) {
-        //         setDisabled(true)
-        //     } else {
-        //         setDisabled(false)
-        //     }
-        // }
+        if (userData > 0) {
+            const minValidation = userData < minOrder || userData > data?.data.available;
+            if (minValidation) {
+                setDisabled(true)
+            } else {
+                setDisabled(false)
+            }
+        }
 
-        // if (userData === '' || userData < 1) {
-        //     setInputValueError(true)
-        // } else {
+        if (userData === '' || userData < 1) {
+            setInputValueError(true)
+        } else {
 
-        //     setInputValueError(false)
-        // }
+            setInputValueError(false)
+        }
     }
 
     const placeOrder = (e) => {

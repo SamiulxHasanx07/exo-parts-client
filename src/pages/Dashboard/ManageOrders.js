@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../fireabse.init';
-
+import { toast } from 'react-toastify';
 const ManageOrders = () => {
 
     const fetchData = () => {
@@ -59,8 +59,21 @@ const ManageOrders = () => {
             }
         })
     }
-    const handleShipped = () => {
-
+    const handleShipped = (id) => {
+        const url = `http://localhost:5000/manageshipped/${id}`
+        fetch(`http://localhost:5000/manageshipped/${id}`, {
+            method: 'PATCH',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.modifiedCount){
+                toast.success('Shipped Product');
+                refetch()
+            }
+        })
     }
     return (
         <div>
@@ -96,7 +109,7 @@ const ManageOrders = () => {
                                             <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                                                 {
                                                     order.status === 'paid' ? <li>
-                                                        <button onClick={handleShipped} className='btn btn-ghost py-2'>Shipped</button>
+                                                        <button onClick={() => handleShipped(order._id)} className='btn btn-ghost py-2'>Shipped</button>
                                                     </li> : <li>
                                                         <button onClick={() => deleteProduct(order?.product, order._id)} className='btn btn-ghost py-2'>Cancel</button>
                                                     </li>
