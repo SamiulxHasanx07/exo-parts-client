@@ -75,7 +75,7 @@ const Purchase = () => {
                     'content-type': 'application/json',
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
-                body: JSON.stringify({ product: data?.data.name, name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today })
+                body: JSON.stringify({ product: data?.data.name, name: user?.displayName, email, price, address, phone, qty, status: 'unpaid', date: today, })
             })
                 .then(res => res.json())
                 .then(data => {

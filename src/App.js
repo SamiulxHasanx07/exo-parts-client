@@ -21,6 +21,7 @@ import MakeAdmin from './pages/Dashboard/MakeAdmin';
 import ManageOrders from './pages/Dashboard/ManageOrders';
 import ManageProducts from './pages/Dashboard/ManageProducts';
 import EditProduct from './pages/Dashboard/EditProduct';
+import Payment from './pages/Dashboard/Payment';
 
 function App() {
   const location = useLocation();
@@ -66,6 +67,7 @@ function App() {
               </RequireAuth>
             }>
               <Route path='orders' element={<Orders></Orders>}></Route>
+              <Route path='payment/:id' element={<Payment></Payment>}></Route>
               <Route path='addreview' element={<AddReview></AddReview>}></Route>
               <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
               <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Order = ({ singleOrder, index, refetch }) => {
-    const { _id, product, name, email, price, address, qty, status, date } = singleOrder;
+    const { _id, product, name, email, price, address, qty, status, date, transactionId } = singleOrder;
+
+
 
     const deleteOrder = () => {
 
@@ -33,12 +36,8 @@ const Order = ({ singleOrder, index, refetch }) => {
                             refetch();
                         }
                     })
-
             }
         })
-
-
-
     }
 
     return (
@@ -49,10 +48,15 @@ const Order = ({ singleOrder, index, refetch }) => {
             <td>{qty}</td>
             <td>${price}</td>
             <td>{date}</td>
-            <td><span className='px-2 py-1 rounded-md bg-yellow-300'>{status}</span></td>
+            <td><span className={`px-2 py-1 rounded-md ${status!=='unpaid'?'bg-green-500':'bg-yellow-300'}`}>{status}</span></td>
             <td>
-                <button className='btn btn-sm btn-success'>Pay Now</button>
-                <button onClick={deleteOrder} className='ml-3 btn btn-sm bg-red-400'>Cancel</button>
+                {
+                    status === 'paid' ? transactionId : <>
+
+                        <Link to={`/dashboard/payment/${_id}`} className='btn btn-sm btn-success'>Pay Now</Link>
+                        <button onClick={deleteOrder} className='ml-3 btn btn-sm bg-red-400'>Cancel</button>
+                    </>
+                }
             </td>
         </tr>
     );

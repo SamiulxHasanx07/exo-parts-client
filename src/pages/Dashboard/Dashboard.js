@@ -28,12 +28,12 @@ const Dashboard = () => {
                     <ul className="menu p-4 overflow-y-auto w-80  text-base-content bg-primary">
                         {/* <!-- Sidebar content here --> */}
                         {
-                            admin !== 'admin' && <>
+                            admin !== 'admin' ? <>
                                 <li><CustomLink to='/home'><FontAwesomeIcon icon={faHome} /> Goto Home</CustomLink></li>
                                 <li><CustomLink to='/dashboard/orders'>My Orders</CustomLink></li>
                                 <li><CustomLink to='/dashboard/addreview'>Add a Review</CustomLink></li>
                                 <li><CustomLink to='/dashboard/myprofile'>My Profile</CustomLink></li>
-                            </>
+                            </>:''
                         }
 
                         {

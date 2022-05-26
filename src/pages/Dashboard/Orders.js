@@ -45,7 +45,7 @@ const Orders = () => {
                             <th>Total</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Action/transaction</th>
                         </tr>
                     </thead>
                     <tbody>
