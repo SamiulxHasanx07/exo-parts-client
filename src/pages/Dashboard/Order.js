@@ -51,7 +51,7 @@ const Order = ({ singleOrder, index, refetch }) => {
             <td><span className={`px-2 py-1 rounded-md ${status!=='unpaid'?'bg-green-500':'bg-yellow-300'}`}>{status}</span></td>
             <td>
                 {
-                    status === 'paid' ? transactionId : <>
+                    status === 'paid' ? 'TXN :'+ transactionId : <>
 
                         <Link to={`/dashboard/payment/${_id}`} className='btn btn-sm btn-success'>Pay Now</Link>
                         <button onClick={deleteOrder} className='ml-3 btn btn-sm bg-red-400'>Cancel</button>

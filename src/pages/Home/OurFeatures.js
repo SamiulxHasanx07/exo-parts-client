@@ -19,7 +19,7 @@ const OurFeatures = () => {
                                 <h2 class="card-title">
                                     After Seles Servise
                                 </h2>
-                                <p>We provide the best after seles service</p>
+                                <p>After-sales is the provision of services, support and spare parts after making an initial sale. This often occurs.</p>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ const OurFeatures = () => {
                                 <h2 class="card-title">
                                     World Wide Dealer
                                 </h2>
-                                <p>We provide the best after seles service</p>
+                                <p>Our dealer members around the world about 2M. All dealers are always try to provide best service</p>
                             </div>
                         </div>
                     </div>
@@ -47,9 +47,9 @@ const OurFeatures = () => {
                             </div>
                             <div class="card-body">
                                 <h2 class="card-title">
-                                    Durablity
+                                    Product Durablity
                                 </h2>
-                                <p>We provide the best after seles service</p>
+                                <p>Our quality control team ensure the best durablity product provided to customer Durability.</p>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@ const OurFeatures = () => {
                                 <h2 class="card-title">
                                     Best car parts Manufacturer
                                 </h2>
-                                <p>We provide the best after seles service</p>
+                                <p>We are in the market near about 15+ years. Our next gola is lead in this field stay with us.</p>
                             </div>
                         </div>
                     </div>

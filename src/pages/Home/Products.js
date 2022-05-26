@@ -16,7 +16,7 @@ const Products = () => {
                 <h2 className='text-4xl font-bold mb-16 text-center text-secondary'>Exo Parts</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-16 px-2 md:px-0 lg:px-0'>
                     {
-                        products?.data.map(product => <Product key={product._id} product={product} />)
+                        products?.data?.slice(0,6).map(product => <Product key={product._id} product={product} />)
                     }
                 </div>
 

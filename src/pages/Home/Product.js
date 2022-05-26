@@ -11,7 +11,7 @@ const Product = ({ product }) => {
                 <div className="card-body">
                     <h2 className="card-title">{product?.name}</h2>
                     <div className='flex justify-between'>
-                        <h4 className='text-xl font-bold'>${product.price} /unit</h4>
+                        <h4 className='text-xl font-bold'>${product.price} /pcs</h4>
                         <h4 className='text-xl'>Min Order: {product.minOrder} pcs</h4>
                     </div>
                     <p className='text-xl text-left'>Available: {product.available} pcs</p>

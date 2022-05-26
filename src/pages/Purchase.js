@@ -217,6 +217,7 @@ const Purchase = () => {
                             {disabled && <span className='text-red-700'>Minimum Qty: {data?.data.minOrder}  {data?.data.available > data?.data.minOrder ? `& Maximum Qty: ${data?.data.available}` : ''}</span>}
 
                             <input required type="text" name='phone' placeholder='Phone Number' className="input input-bordered w-full  mt-10" />
+                            <input disabled type="text" className="input input-bordered w-full  mt-10" value={user && user.displayName} />
                             <input disabled type="text" className="input input-bordered w-full  mt-10" value={user && user.email} />
                             <textarea required name='shipping' type="text" className="input input-bordered w-full mt-10" placeholder='Enter Your Shipping Address' />
 
