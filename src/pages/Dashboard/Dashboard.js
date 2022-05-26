@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import CustomLink from '../../shared/CustomLink';
-import { faHome, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faArrowRightFromBracket, faBars} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'firebase/auth';
 import auth from '../../fireabse.init';
@@ -17,9 +17,9 @@ const Dashboard = () => {
         <>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col lg:px-16">
+                <div className="drawer-content flex flex-col lg:px-16 py-5 md:py-0 lg:py-0">
                     {/* <!-- Page content here --> */}
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden mx-2">< FontAwesomeIcon className="text-3xl" icon={faBars}/></label>
                     <h2 className='text-3xl text-secondary font-bold py-10'>Dashboard</h2>
                     <Outlet />
                 </div>

@@ -19,7 +19,7 @@ const MyProfile = () => {
     const { name, phone, education, address, github, photo } = userInfo;
     return (
         <div>
-            <div className="card w-[60%] mx-auto bg-base-100 shadow-xl  border-2 my-10">
+            <div className="card w-[95%] md:w-[90%] lg:w-[60%] mx-auto bg-base-100 shadow-xl  border-2 my-10">
                 <h2 className='text-3xl font-bold text-secondary text-center py-8'>User Porfile</h2>
                 <div className="card-body">
                     <div className='flex justify-between'>

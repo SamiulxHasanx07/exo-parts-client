@@ -46,7 +46,7 @@ const UpdateProfile = () => {
 
 
     return (
-        <div className=''>
+        <div className='px-3 md:px-0 lg:px-0'>
             <h2 className='text-3xl my-3 font-bold text-secondary'>Update Profile</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>

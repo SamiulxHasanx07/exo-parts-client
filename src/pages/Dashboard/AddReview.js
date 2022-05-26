@@ -45,9 +45,9 @@ const AddReview = () => {
     }
     return (
         <div>
-            <h2 className='text-secondary text-3xl font-bold'>Add Review</h2>
 
-            <div className='w-[50%] mt-6'>
+            <div className='w-[95%] lg:w-[50%] mx-auto mt-6'>
+            <h2 className='text-secondary text-3xl font-bold'>Add Review</h2>
                 <form onSubmit={reviewSubmit}>
                     <label>Write Your Reivew</label> <br />
                     <textarea required name='review' rows="5" className="w-full textarea textarea-bordered" placeholder="Writer Your Review Here"></textarea>

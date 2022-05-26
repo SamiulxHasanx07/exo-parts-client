@@ -7,18 +7,20 @@ import { signOut } from 'firebase/auth';
 import CustomLink from './CustomLink';
 const Navbar = () => {
     const [user] = useAuthState(auth)
-    
+
     return (
         <>
             <li>
                 <CustomLink to='/'>Home</CustomLink>
                 <CustomLink to='/blog'>Blog</CustomLink>
                 <CustomLink to='/myportfolio'>My Portfolio</CustomLink>
-                <p className={`${user?'':'hidden'}`}>{user?.displayName}</p>
-                {user ?'':  <CustomLink to='/login'>Login</CustomLink>}
-                {user ?'':  <CustomLink to='/register'>Register</CustomLink>}
+                <div className='flex justify-center'>
+                    <p className={`${user ? '' : 'hidden'} text-center`}>{user?.displayName}</p>
+                </div>
+                {user ? '' : <CustomLink to='/login'>Login</CustomLink>}
+                {user ? '' : <CustomLink to='/register'>Register</CustomLink>}
                 {
-                    user?<CustomLink to='/dashboard'>Dashboard</CustomLink>:''
+                    user ? <CustomLink to='/dashboard'>Dashboard</CustomLink> : ''
                 }
 
 

@@ -13,7 +13,7 @@ const ContactUs = () => {
         <div className='py-20'>
             <div className="container mx-auto">
                 <h2 className='text-3xl text-center text-secondary font-bold'>Contact Us</h2>
-                <div className='w-[50%] mx-auto'>
+                <div className='w-[90%] lg:w-[50%] md:w-[50%] mx-auto'>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <p className='mt-3' >Name</p>

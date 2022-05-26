@@ -14,9 +14,9 @@ const ManageProducts = () => {
         return <p>Loading...</p>
     }
     return (
-        <div>
+        <div className='px-3 md:px-0 lg:px-0'>
             <h2 className='text-3xl font-bold'>Manage All Products</h2>
-            <div className="mt-8">
+            <div className="mt-8 overflow-x-auto">
                 <table className="table table-compact w-full">
                     <thead>
                         <tr>

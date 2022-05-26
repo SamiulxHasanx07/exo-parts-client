@@ -95,7 +95,7 @@ const MakeAdmin = () => {
         }
     }
     return (
-        <div>
+        <div className='px-3 md:px-0 lg:px-0'>
             <h2 className='text-3xl font-bold text-secondary'>Make a admin</h2>
             <div className="overflow-x-auto mt-8">
                 <table className="table table-compact w-full">
